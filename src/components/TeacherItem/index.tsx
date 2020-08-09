@@ -4,35 +4,37 @@ import { TeacherItemModel } from '../../model/TeacherItemModel';
 import whatsapp from '../../assets/images/icons/whatsapp.svg';
 
 import './styles.css';
+import api from '../../services/api';
 
-const TeacherItem: React.FC<TeacherItemModel> = ({
-    NomeProffy,
-    ImagemProffy,
-    DescricaoProffy,
-    MateriaProffy,
-    PrecoProffy,
-}) => {
+const TeacherItem: React.FC<TeacherItemModel> = ({ teacher }) => {
+    function createNewConnection() {
+        api.post('connections', { user_id: teacher.id });
+    }
+
     return (
         <article className="teacher-item">
             <header>
-                <img src={`${ImagemProffy}`} alt="Imagem do proffy" />
+                <img src={`${teacher.avatar}`} alt={teacher.name} />
                 <div>
-                    <strong>{NomeProffy}</strong>
-                    <span>{MateriaProffy}</span>
+                    <strong>{teacher.name}</strong>
+                    <span>{teacher.subject}</span>
                 </div>
             </header>
 
-            <p>{DescricaoProffy}</p>
+            <p>{teacher.bio}</p>
 
             <footer>
                 <p>
                     Preço/Hora
-                    <strong>{PrecoProffy}</strong>
+                    <strong>R$ {teacher.cost}</strong>
                 </p>
-                <button type="button">
+                <a
+                    onClick={createNewConnection}
+                    href={`https://wa.me/${teacher.whatsapp}`}
+                >
                     <img src={whatsapp} alt="Whatsapp" />
                     Entrar em contato
-                </button>
+                </a>
             </footer>
         </article>
     );
