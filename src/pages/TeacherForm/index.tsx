@@ -1,13 +1,13 @@
 import React from 'react';
 
 import Input from '../../components/Input';
+import Select from '../../components/Select';
 import Textarea from '../../components/Textarea';
 import PageHeader from '../../components/PageHeader';
 
 import warning from '../../assets/images/icons/warning.svg';
 
 import './styles.css';
-import Select from '../../components/Select';
 
 function TeacherForm() {
     return (
@@ -45,6 +45,32 @@ function TeacherForm() {
                         ]}
                     />
                     <Input name="cost" label="Custo da sua hora por aula" />
+                </fieldset>
+
+                <fieldset>
+                    <legend>
+                        Horarios disponiveis
+                        <button type="button">+ Novo horário</button>
+                    </legend>
+
+                    <div className="schedule-item">
+                        <Select
+                            name="week_day"
+                            label="Dia da semana"
+                            options={[
+                                { value: '0', label: 'Domingo' },
+                                { value: '1', label: 'Segunda-feira' },
+                                { value: '2', label: 'terça-feira' },
+                                { value: '3', label: 'Quarta-feira' },
+                                { value: '4', label: 'Quinta-feira' },
+                                { value: '5', label: 'Sexta-feira' },
+                                { value: '6', label: 'Sabado' },
+                            ]}
+                        />
+
+                        <Input name="from" label="Das" type="time" />
+                        <Input name="to" label="Ate" type="time" />
+                    </div>
                 </fieldset>
 
                 <footer>
