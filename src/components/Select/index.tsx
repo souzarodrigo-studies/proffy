@@ -7,8 +7,8 @@ const Select: React.FC<SelectModel> = ({ label, name, options, ...rest }) => {
     return (
         <div className="select-block">
             <label htmlFor={name}>{label}</label>
-            <select id={name} {...rest} defaultValue={'none'}>
-                <option value="none" disabled selected hidden>
+            <select value="" id={name} {...rest}>
+                <option value="" disabled hidden>
                     Selecione uma opção
                 </option>
 
